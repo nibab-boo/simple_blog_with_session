@@ -1,3 +1,12 @@
 Rails.application.routes.draw do
+  resources :sessions, only: [:create]
+  get 'signup', to: "users#new", as: 'signup'
+  get 'login', to: "sessions#new", as: 'login'
+  get 'logout', to: "sessions#destroy", as: 'logout'
+  
+  resources :users, except: [:index]
+
+  resources :articles, only: [:index, :show]
+  root 'articles#index'
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
