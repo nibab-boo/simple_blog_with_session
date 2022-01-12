@@ -10,6 +10,18 @@ class ArticlesController < ApplicationController
   def show
   end
 
+  def recent
+    @articles = Article.first(:order => "id desc", :limit => 6)
+  end
+
+  def top
+    redirect_to articles_path
+  end
+
+  def my
+    @articles = current_user.articles
+  end
+
   def new
     if current_user && current_user == @user
       @user = current_user
