@@ -1,20 +1,17 @@
 class ArticlesController < ApplicationController
   # skip_before_action :login_required, :only => [:index, :show]
   before_action :find_article, only: [:show, :edit, :update, :destroy]
-  before_action :find_user, only: [:new, :create] # , :user_article
+  before_action :find_user, only: [:new, :create, :edit] # , :user_article
 
   def index
     @articles = Article.all
-    # raise 
   end
   
   def show
   end
 
   def new
-    # raise
     if current_user && current_user == @user
-      # @user = User.find(params[:user_id])
       @user = current_user
       @article = Article.new
     else
@@ -34,12 +31,20 @@ class ArticlesController < ApplicationController
   end
   
   def edit
+    unless hard_checker
+      reset_session
+      # raise
+      flash[:notice] = 'I see what you are trying to do.Next time, I will call cops on you.Login to save yourself.'
+      render 'sessions/new'
+    end
   end
-  
+      
   
   def update
-    @article.update(build_article)
-    redirect_to article_path
+    if hard_checker
+      @article.update(build_article)
+    end
+    redirect_to article_path(@article)
   end
   
   def destroy
@@ -60,5 +65,9 @@ class ArticlesController < ApplicationController
 
   def find_user
     @user = User.find_by_user_name(params[:user_id])
+  end
+
+  def hard_checker
+    @article.user == @user && current_user == @user
   end
 end
