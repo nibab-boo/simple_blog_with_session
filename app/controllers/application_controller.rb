@@ -15,5 +15,10 @@ class ApplicationController < ActionController::Base
   #   end
   # end
 
-  helper_method :current_user
+  def same_user
+    @user = User.find_by_user_name(params[:id])
+    current_user == @user
+  end
+
+  helper_method :current_user, :same_user
 end

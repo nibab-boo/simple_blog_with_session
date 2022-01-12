@@ -13,22 +13,28 @@
   <body>
     <div id="user_header">
       <div class="navbar navbar-light bg-light justify-content-between px-5">
-        <%= link_to '<h3 class="inline-block">Article</h3>'.html_safe, articles_path %>
+        <%= link_to '<h3 class="inline-block">Newspaper</h3>'.html_safe, articles_path, class:"navbar-brand" %>
         <%# <%= link_to "create a article", new_article_path %> 
-        <% if current_user %>  
-          Logged in as <%= current_user.email %>.  
-          <%= link_to "Log Out", logout_path %>  
-        <% else %>  
-          <%= link_to "Sign Up", signup_path %> or  
-          <%= link_to "Log In", login_path %>  
+        <% if current_user %> 
+          <div class="box">
+            <%= link_to "@#{current_user.to_param}", user_path(current_user) %>
+            <%= link_to "create a post", new_user_article_path(current_user), class: "btn btn-primary" %>
+            <%= link_to "Log Out", logout_path, class: "btn border border-primary" %>  
+          </div>
+        <% else %>
+          <div class="box">
+            <%= link_to "create a post", login_path, class: "btn btn-primary" %>
+            <%= link_to "Sign Up", signup_path, class: "btn btn-primary" %>  
+            <%= link_to "Log In", login_path, class: "btn border border-primary" %>  
+          </div>
         <% end %>  
       </div> 
     </div>  
-    <% flash.each do |key, value| %>  
+    <!-- <% flash.each do |key, value| %>  
       <%= content_tag(:div, class: "alert alert-#{key}") do %>  
         <p><%= value %></p>  
       <% end %>
-    <% end %>  
+    <% end %>  -->
     <div class="container">
       <%= yield %>
     </div>

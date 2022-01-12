@@ -5,11 +5,17 @@
   <%= @user.email %>
 </p>
 <h3>Articles</h3>
-<ul>
+<ul class="list-group">
   <% @user.articles.each do |article| %>
-    <li><%= article.title %>| | <%= link_to "delete", article_path(article), method: :delete %></li>
+    <li class="list-group-item d-flex justify-content-between h6 my-2"><%= link_to article.title, article_path(article) %>
+    <% if same_user %>
+      <div class="user-link-box">
+        <%= link_to '<i class="fas fa-edit"></i>'.html_safe, edit_user_article_path(current_user, article) %>
+        <%= link_to '<i class="fas fa-trash"></i>'.html_safe, user_article_path(current_user, article), method: "delete", data: { confirm: "Do you want to delete this article?" } %>   
+      </div>
+    <% end %>
+    </li>
   <% end %>
 </ul>
 
-<%= link_to 'Edit', edit_user_path(@user) %> |
 <%= link_to 'Back', users_path %>

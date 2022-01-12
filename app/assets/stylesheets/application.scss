@@ -15,3 +15,12 @@
  */
 
  @import "bootstrap/scss/bootstrap";
+ @import "font-awesome-sprockets";
+ @import "font-awesome";
+ a {
+   color: inherit;
+   &:hover {
+     text-decoration: none;
+     background-color: inherit;
+   }
+ }
