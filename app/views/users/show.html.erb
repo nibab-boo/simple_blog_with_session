@@ -4,6 +4,12 @@
   <strong>Email:</strong>
   <%= @user.email %>
 </p>
+<h3>Articles</h3>
+<ul>
+  <% @user.articles.each do |article| %>
+    <li><%= article.title %>| | <%= link_to "delete", article_path(article), method: :delete %></li>
+  <% end %>
+</ul>
 
 <%= link_to 'Edit', edit_user_path(@user) %> |
 <%= link_to 'Back', users_path %>

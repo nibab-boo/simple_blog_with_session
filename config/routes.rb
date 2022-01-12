@@ -4,9 +4,15 @@ Rails.application.routes.draw do
   get 'login', to: "sessions#new", as: 'login'
   get 'logout', to: "sessions#destroy", as: 'logout'
   
-  resources :users, except: [:index]
-
-  resources :articles, only: [:index, :show]
+  resources :users, except: [:index] do
+    resources :articles, only: [:new, :create]
+    # member do
+    #   get :articles
+    # end
+  end
+  
+  resources :articles, except: [:new, :create]
+  
   root 'articles#index'
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

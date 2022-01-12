@@ -7,5 +7,13 @@ class ApplicationController < ActionController::Base
     User.where(id: session[:user_id]).first
   end
 
-  helper_method :current_user
+  def redirect_app(initial_url, exception_url)
+    unless request.referer == initial_url
+      redirect_to request.referer
+    else
+      redirect_to exception_url
+    end
+  end
+
+  helper_method :current_user, :redirect_app
 end

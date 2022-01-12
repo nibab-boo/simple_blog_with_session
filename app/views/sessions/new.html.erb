@@ -1,7 +1,7 @@
 <h1>Sessions#new</h1>
 <p>Find me in app/views/sessions/new.html.erb</p>
 <h1>Log In</h1>   
-<%= form_tag sessions_path do %>   
+<!--<%= form_tag sessions_path do %>   
 <div>   
 <%= label_tag :email %><br>   
 <%= text_field_tag :email %>   
@@ -13,4 +13,10 @@
   <div>   
     <%= submit_tag "Log In" %>   
 </div>   
-<% end %>  
+<% end %>  -->
+
+<%= simple_form_for :user, url: sessions_path do |f| %>
+  <%= f.input :email, as: :string %>
+  <%= f.input :password, as: :password %>
+  <%= f.submit 'Assign', class: "btn btn-default btn-primary" %>
+<% end %>
