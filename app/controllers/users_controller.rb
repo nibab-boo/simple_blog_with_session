@@ -12,6 +12,9 @@ class UsersController < ApplicationController
   
   # GET /users/new
   def new
+    if current_user
+      redirect_to user_path(current_user.to_param)
+    end
     @user = User.new
   end
 
@@ -50,7 +53,7 @@ class UsersController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_user
-      @user = User.find(params[:id])
+      @user = User.find_by_user_name(params[:id])
     end
 
     # Only allow a list of trusted parameters through.

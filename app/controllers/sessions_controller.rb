@@ -1,5 +1,6 @@
 class SessionsController < ApplicationController
   def new
+    # raise
     if current_user
       redirect_to user_path(current_user)
     end
@@ -11,8 +12,11 @@ class SessionsController < ApplicationController
       session[:user_id] = user.id
       # redirect_to root_url, notice: 'Logged in!'
       # irequest.referer == root_url
-      redirect_app(login_url, user_path(user))
-      # raise
+      unless request.referer == login_url
+        redirect_to request.referer
+      else
+        redirect_to user_path(user.to_param)
+      end
     else
       render :new
     end

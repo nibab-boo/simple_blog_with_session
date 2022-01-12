@@ -45,7 +45,7 @@ class ArticlesController < ApplicationController
   def destroy
     user = User.find(@article[:user_id])
     @article.destroy
-    redirect_to user_path(user)
+    redirect_to user_path(user.to_param)
   end
 
   private
@@ -59,6 +59,6 @@ class ArticlesController < ApplicationController
   end
 
   def find_user
-    @user = User.find(params[:user_id])
+    @user = User.find_by_user_name(params[:user_id])
   end
 end

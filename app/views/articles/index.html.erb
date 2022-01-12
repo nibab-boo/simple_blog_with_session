@@ -1,7 +1,7 @@
 <% if current_user %>
-  <%= link_to "create a post", new_user_article_path(current_user) %>
+  <%= link_to "create a post", new_user_article_path(current_user), class: "btn btn-primary" %>
 <% else %>
-  <%= link_to "create a post", login_path %>
+  <%= link_to "create a post", login_path, class: "btn btn-primary" %>
 <% end %>
 <% @articles.each do |article| %>
   <div class="card my-3 border-0">
