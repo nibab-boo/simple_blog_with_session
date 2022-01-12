@@ -10,4 +10,12 @@ class User < ApplicationRecord
   def to_param
     user_name
   end
+
+  def username
+    "@#{user_name}"
+  end
+
+  def no_of_articles
+    articles.count
+  end
 end
