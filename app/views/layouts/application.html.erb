@@ -18,12 +18,12 @@
         <% if current_user %> 
           <div class="link-box">
             <%= link_to "@#{current_user.to_param}", user_path(current_user), class: "login" %>
-            <%= link_to "create a post", new_user_article_path(current_user), class: "btn btn-primary" %>
+            <%= link_to "create a post", new_user_article_path(current_user), class: "btn btn-info" %>
             <%= link_to "Log Out", logout_path, class: "btn border border-primary login" %>  
           </div>
         <% else %>
           <div class="link-box">
-            <%= link_to "create a post", login_path, class: "btn btn-primary" %>
+            <!--<%= link_to "create a post", login_path, class: "btn btn-secondary" %>-->
             <%= link_to "Sign Up", signup_path, class: "btn btn-primary" %>  
             <%= link_to "Log In", login_path, class: "btn border border-primary login" %>  
           </div>
