@@ -1,7 +1,7 @@
 class ArticlesController < ApplicationController
   # skip_before_action :login_required, :only => [:index, :show]
   before_action :find_article, only: [:show, :edit, :update, :destroy]
-  before_action :find_user, only: [:new, :create, :edit] # , :user_article
+  before_action :find_user, only: [:new, :create, :edit, :update] # , :user_article
 
   def index
     @articles = Article.all
@@ -56,6 +56,7 @@ class ArticlesController < ApplicationController
     if hard_checker
       @article.update(build_article)
     end
+    # raise
     redirect_to article_path(@article)
   end
   
