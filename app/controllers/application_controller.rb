@@ -18,6 +18,9 @@ class ApplicationController < ActionController::Base
 
   def same_user
     @user = User.find_by_user_name(params[:id])
+    unless @user
+      @user = Article.find(params[:id]).user
+    end
     current_user == @user
   end
 
