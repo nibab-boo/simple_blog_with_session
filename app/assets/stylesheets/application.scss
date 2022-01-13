@@ -17,10 +17,30 @@
  @import "bootstrap/scss/bootstrap";
  @import "font-awesome-sprockets";
  @import "font-awesome";
+
+  .link-box {
+    a {
+      color: white;
+    }
+    .login {
+      color: blue;
+      &:hover {
+        color: #080e41;
+        border-color: #080e41;
+      }
+    }
+  }
  a {
    color: inherit;
    &:hover {
      text-decoration: none;
      background-color: inherit;
    }
+ }
+
+ .fas {
+    color: gray;
+    &:visited {
+      color: gray;
+    }
  }

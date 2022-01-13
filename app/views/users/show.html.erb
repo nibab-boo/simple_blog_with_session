@@ -1,17 +1,18 @@
 <p id="notice"><%= notice %></p>
-
-<p>
-  <strong>UserName:</strong>
-  <%= @user.username %>
-</p>
-<p>
-  <strong>Total posts:</strong>
-  <%= @user.no_of_articles %>
-</p>
+<div class= "list-group-item shadow p-3 mb-5 bg-white rounded">
+  <p>
+    <strong>UserName:</strong>
+    <%= @user.username %>
+  </p>
+  <p class="mb-0">
+    <strong>Total posts:</strong>
+    <%= @user.no_of_articles %>
+  </p>
+</div>
 <h3>Articles</h3>
 <ul class="list-group">
   <% @user.articles.each do |article| %>
-    <li class="list-group-item d-flex justify-content-between h6 my-2"><%= link_to article.title, article_path(article) %>
+    <li class="list-group-item d-flex justify-content-between border h6 shadow-sm p-3 my-2 bg-white"><%= link_to article.title, article_path(article) %>
     <% if same_user %>
       <div class="user-link-box">
         <%= link_to '<i class="fas fa-edit"></i>'.html_safe, edit_user_article_path(current_user, article) %>
