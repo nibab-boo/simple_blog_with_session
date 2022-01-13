@@ -6,7 +6,7 @@
         <small><%= article.days_ago %></small>
       </div>
       <small><%=link_to article.user.username, user_path(article.user.to_param) %></small>
-      <p class="mb-1"><%= article.content[0..20] %></p>
+      <p class="mb-1"><%= simple_format((article.content))[0..50] %></p>
     </div>
   <% end %>
 </div>

@@ -1,0 +1,14 @@
+[1mdiff --git a/app/views/articles/_articles.html.erb b/app/views/articles/_articles.html.erb[m
+[1mindex 61ca5e2..892d359 100644[m
+[1m--- a/app/views/articles/_articles.html.erb[m
+[1m+++ b/app/views/articles/_articles.html.erb[m
+[36m@@ -6,7 +6,7 @@[m
+         <small><%= article.days_ago %></small>[m
+       </div>[m
+       <small><%=link_to article.user.username, user_path(article.user.to_param) %></small>[m
+[31m-      <p class="mb-1"><%= article.content[0..20] %></p>[m
+[32m+[m[32m      <p class="mb-1"><%= simple_format((article.content))[0..50] %></p>[m
+     </div>[m
+   <% end %>[m
+ </div>[m
+\ No newline at end of file[m
