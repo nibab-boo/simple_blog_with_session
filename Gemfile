@@ -48,7 +48,7 @@ group :test do
   gem 'webdrivers'
 end
 group :production do
-  gem 'pg', '0.20.0'
+  gem 'pg', '1.1'
 end
 gem 'simple_form'
 
