@@ -1,5 +1,6 @@
 class Article < ApplicationRecord
   belongs_to :user
+  has_many :likes, dependent: :destroy
 
   def days_ago
     time = (Time.current - created_at) / (60 * 60)

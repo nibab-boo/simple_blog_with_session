@@ -1,5 +1,6 @@
 class User < ApplicationRecord
   has_many :articles, dependent: :destroy
+  has_many :likes, dependent: :destroy
   has_secure_password
 
   validates :email, presence: true, uniqueness: true, format: {
