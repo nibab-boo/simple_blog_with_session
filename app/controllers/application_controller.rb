@@ -24,5 +24,9 @@ class ApplicationController < ActionController::Base
     current_user == @user
   end
 
-  helper_method :current_user, :same_user
+  def find_like(article)
+    Like.where(user: current_user).where(article: article).first
+  end
+
+  helper_method :current_user, :same_user, :find_like
 end

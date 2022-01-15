@@ -8,10 +8,30 @@
       <small><%=link_to article.user.username, user_path(article.user.to_param) %></small>
       <div class="d-flex w-100 justify-content-between">
         <p class="mb-1"><%= article.content[0..20]%></p>
-        <% if current_user %>
-          <small><%= article.likes.count %> <%= link_to "like", article_likes_path(article), method: :POST %></small>
-        <% end %>
+        <small>
+          <%= article.likes.count %>
+          <% if  current_user &&  article.user != current_user %>
+            <% if article.liked?(current_user) %>
+              <%= link_to '<i class="fas fa-thumbs-up"></i>'.html_safe, like_path(find_like(article)), method: :delete %>
+            <% else %>
+              <%= link_to '<i class="far fa-thumbs-up"></i>'.html_safe, article_likes_path(article), method: :POST %>
+            <% end %>
+          <% else %>
+            <i class="far fa-thumbs-up"></i>
+          <% end %>
+        </small>
       </div>
     </div>
   <% end %>
 </div>
+
+
+<%# if current_user && article.user != current_user && !(article.users.include? current_user) %>
+  <%#= link_to "like", article_likes_path(article), method: :POST %>
+<%# elsif (article.users.include? current_user)  && article.user != current_user %>
+  <%## <%#= raise %>
+  <%#= link_to "like", like_path(find_like(article)), method: :delete %>
+<%# else %>
+  <%#= "like"  %>      
+<%# end %>
+
