@@ -1,0 +1,11 @@
+
+<%= article.likes.count %>
+<% if  current_user &&  article.user != current_user %>
+  <% if article.liked?(current_user) %>
+    <%= link_to '<i class="fas fa-thumbs-up"></i>'.html_safe, like_path(find_like(article)), method: :delete %>
+  <% else %>
+    <%= link_to '<i class="far fa-thumbs-up"></i>'.html_safe, article_likes_path(article), method: :POST %>
+  <% end %>
+<% else %>
+  <i class="far fa-thumbs-up"></i>
+<% end %>
