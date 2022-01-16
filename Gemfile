@@ -51,6 +51,8 @@ end
 group :production do
   gem 'pg', '1.1'
 end
+
+gem 'faker'
 gem 'autoprefixer-rails'
 gem 'font-awesome-sass', '~> 5.6.1'
 gem 'simple_form'
