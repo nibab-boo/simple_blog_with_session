@@ -11,7 +11,7 @@ class ArticlesController < ApplicationController
   end
 
   def recent
-    @articles = Article.first(:order => "id desc", :limit => 6)
+    @articles = Article.all.sort_by &:created_at
   end
 
   def top
